@@ -20,6 +20,8 @@ SECRET_KEY = env('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
+    'core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -93,3 +96,12 @@ STATICFILES_FINDERS = (
 # Media files (Media, Images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(LOCAL_STATIC_CDN_PATH, 'media_root')
+
+#REST
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
