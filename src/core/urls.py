@@ -34,7 +34,7 @@ urlpatterns = [
 
     #api
     path('api-root/', include(router.urls)),
-    path('item/', SnippetList.as_view()),
+    path('add/', SnippetList.as_view()),
     path('item/<int:id>/', ItemDetails.as_view()),
     path('Generic/', GenericAPIView.as_view()),
 ]
