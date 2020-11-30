@@ -3,13 +3,10 @@ from .serializers import ItemSerializer
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, mixins, generics
+from rest_framework import viewsets, status, mixins, generics
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-
-from rest_framework import viewsets
-from django.shortcuts import get_object_or_404
 
 from django.views.generic import ListView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -81,31 +78,6 @@ class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.Crea
 
     def delete(self, request, id):
         return self.destroy(request, id)
-
-
-
-"""class ItemViewSet(viewsets.ViewSet):
-
-    def list(self, request):
-        Items = Item.objects.all()
-        serializer = ItemSerializer(Items, many=True)
-        return Response(serializer.data)
-
-
-    def create(self, request):
-        serializer = ItemSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CRE ATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-    def retrieve(self, request, pk=None):
-        queryset = Item.objects.all()
-        Item = get_object_or_404(queryset, pk=pk)
-        serializer = ItemSerializer(Item)
-        return Response(serializer.data)"""
-
 
 
 class ItemViewSet(viewsets.ModelViewSet):
